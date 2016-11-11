@@ -7,4 +7,5 @@ Programa | Plataforma           | Versión
 ------------ | ------------- |-------------
 Préstamo Bibliotecario   | [Commcare](https://www.commcarehq.org)        | 1.0
 
-http://www.bibliotecaspublicas.es/sanjavier/imagenes/prestamo.gif
+Inline-style: 
+![alt text](http://www.bibliotecaspublicas.es/sanjavier/imagenes/prestamo.gif "Logo 
