@@ -5,5 +5,4 @@
 
 Programa | Plataforma           | Versión
 ------------ | ------------- |-------------
-Préstamo Bibliotecario   | [Commcare](https://www.commcarehq.org)
-          | 1.0
+Préstamo Bibliotecario   | [Commcare](https://www.commcarehq.org)        | 1.0
