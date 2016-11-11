@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:orx="http://openrosa.org/jr/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:vellum="http://commcarehq.org/xforms/vellum">
+	<h:head>
+		<h:title>Registro de Prestamo</h:title>
+		<model>
+			<instance>
+				<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms" xmlns="http://openrosa.org/formdesigner/C909A1D2-CACF-47F5-8554-7636805DAD1A" uiVersion="1" version="1" name="Registro de Prestamo">
+					<question1 />
+					<question2 />
+					<question3 />
+					<question14 />
+					<question12 jr:template="">
+						<question6 />
+						<question4 />
+						<question5 />
+						<time_of_loan />
+						<question7 />
+					</question12>
+				</data>
+			</instance>
+			<bind vellum:nodeset="#form/question1" nodeset="/data/question1" type="xsd:string" required="true()" />
+			<bind vellum:nodeset="#form/question2" nodeset="/data/question2" />
+			<bind vellum:nodeset="#form/question3" nodeset="/data/question3" type="xsd:string" constraint=". &lt; 100000000 and . &gt; 9999999" jr:constraintMsg="jr:itext('question3-constraintMsg')" vellum:relevant="#form/question2 = 'choice1'" relevant="/data/question2 = 'choice1'" required="true()" />
+			<bind vellum:nodeset="#form/question14" nodeset="/data/question14" type="xsd:int" />
+			<bind vellum:nodeset="#form/question12" nodeset="/data/question12" />
+			<bind vellum:nodeset="#form/question12/question6" nodeset="/data/question12/question6" type="xsd:string" required="true()" />
+			<bind vellum:nodeset="#form/question12/question4" nodeset="/data/question12/question4" type="xsd:date" required="true()" />
+			<bind vellum:nodeset="#form/question12/question5" nodeset="/data/question12/question5" type="xsd:date" required="true()" />
+			<bind vellum:nodeset="#form/question12/time_of_loan" nodeset="/data/question12/time_of_loan" vellum:calculate="date(#form/question12/question5 - #form/question12/question4)" calculate="date(/data/question12/question5 - /data/question12/question4)" />
+			<bind vellum:nodeset="#form/question12/question7" nodeset="/data/question12/question7" type="binary" required="true()" />
+			<itext>
+				<translation lang="es" default="">
+					<text id="question1-label">
+						<value>Ingrese Su Nombre:</value>
+					</text>
+					<text id="question2-label">
+						<value>¿Tiene usted celular?</value>
+					</text>
+					<text id="question2-choice1-label">
+						<value>Si</value>
+					</text>
+					<text id="question2-choice2-label">
+						<value>No</value>
+					</text>
+					<text id="question3-label">
+						<value>Ingrese Su Número Telefónico:</value>
+					</text>
+					<text id="question3-constraintMsg">
+						<value>Verifique el número ingresado</value>
+					</text>
+					<text id="question14-label">
+						<value>¿Cuantos libros necesita prestar?</value>
+					</text>
+					<text id="question12-label">
+						<value>Datos del Prestamo</value>
+					</text>
+					<text id="question12/question6-label">
+						<value>Ingrese el nombre del libro a prestar:</value>
+					</text>
+					<text id="question12/question4-label">
+						<value>¿Qué fecha es hoy?</value>
+					</text>
+					<text id="question12/question5-label">
+						<value>¿Qué fecha va a entregar el libro?</value>
+					</text>
+					<text id="question12/question7-label">
+						<value>Ingrese su firma:</value>
+					</text>
+				</translation>
+			</itext>
+		</model>
+	</h:head>
+	<h:body>
+		<input vellum:ref="#form/question1" ref="/data/question1">
+			<label ref="jr:itext('question1-label')" />
+		</input>
+		<select vellum:ref="#form/question2" ref="/data/question2">
+			<label ref="jr:itext('question2-label')" />
+			<item>
+				<label ref="jr:itext('question2-choice1-label')" />
+				<value>choice1</value>
+			</item>
+			<item>
+				<label ref="jr:itext('question2-choice2-label')" />
+				<value>choice2</value>
+			</item>
+		</select>
+		<input vellum:ref="#form/question3" ref="/data/question3" appearance="numeric">
+			<label ref="jr:itext('question3-label')" />
+			<alert ref="jr:itext('question3-constraintMsg')" />
+		</input>
+		<input vellum:ref="#form/question14" ref="/data/question14">
+			<label ref="jr:itext('question14-label')" />
+		</input>
+		<group>
+			<label ref="jr:itext('question12-label')" />
+			<repeat vellum:jr__count="#form/question14" jr:count="/data/question14" jr:noAddRemove="true()" vellum:nodeset="#form/question12" nodeset="/data/question12">
+				<input vellum:ref="#form/question12/question6" ref="/data/question12/question6">
+					<label ref="jr:itext('question12/question6-label')" />
+				</input>
+				<input vellum:ref="#form/question12/question4" ref="/data/question12/question4">
+					<label ref="jr:itext('question12/question4-label')" />
+				</input>
+				<input vellum:ref="#form/question12/question5" ref="/data/question12/question5">
+					<label ref="jr:itext('question12/question5-label')" />
+				</input>
+				<upload mediatype="image/*" vellum:ref="#form/question12/question7" ref="/data/question12/question7" appearance="signature">
+					<label ref="jr:itext('question12/question7-label')" />
+				</upload>
+			</repeat>
+		</group>
+	</h:body>
+</h:html>
